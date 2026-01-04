@@ -1,1 +1,78 @@
-<p>cadastro works!</p>
+<mat-card class="card-cadastro">
+  <h2>Cadastro</h2>
+
+  <form [formGroup]="cadastroForm" (ngSubmit)="cadastrar()">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+
+      <mat-error *ngIf="cadastroForm.get('nome')?.hasError('required')">
+        Nome é obrigatório
+      </mat-error>
+
+      <mat-error *ngIf="cadastroForm.get('nome')?.hasError('minlength')">
+        Nome deve ter no mínimo 3 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+
+      <mat-error *ngIf="cadastroForm.get('email')?.hasError('required')">
+        Email é obrigatório
+      </mat-error>
+
+      <mat-error *ngIf="cadastroForm.get('cpf')?.hasError('cpf')">
+        Email inválido
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Data de Nascimento</mat-label>
+      <input matInput formControlName="dataNascimento">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput formControlName="cpf">
+
+      <mat-error *ngIf="cadastroForm.get('email')?.hasError('email')">
+        Email inválido
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" formControlName="senha">
+
+      <mat-error *ngIf="cadastroForm.get('senha')?.hasError('required')">
+        Senha é obrigatória
+      </mat-error>
+
+      <mat-error *ngIf="cadastroForm.get('senha')?.hasError('minlength')">
+        Senha deve ter no mínimo 6 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Confirmar Senha</mat-label>
+      <input matInput type="password" formControlName="confirmarSenha">
+
+      <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.hasError('required')">
+        Confirmação de senha obrigatória
+      </mat-error>
+
+      <mat-error *ngIf="cadastroForm.hasError('senhasDiferentes') && cadastroForm.get('confirmarSenha')?.touched">
+        As senhas devem ser iguais
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">
+      Cadastrar
+    </button>
+
+  </form>
+</mat-card>
